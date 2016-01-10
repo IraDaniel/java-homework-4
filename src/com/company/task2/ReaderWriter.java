@@ -1,4 +1,4 @@
-package com.company.Task2C;
+package com.company.task2;
 
 import com.company.KeyWords;
 

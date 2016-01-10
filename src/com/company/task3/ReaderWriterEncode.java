@@ -1,4 +1,4 @@
-package com.company.Task3C;
+package com.company.task3;
 
 import java.io.*;
 
