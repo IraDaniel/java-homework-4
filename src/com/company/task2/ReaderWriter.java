@@ -16,12 +16,11 @@ public class ReaderWriter {
     KeyWords keyWords = new KeyWords();
     private Map<String,Integer> mapKeyWords = new HashMap<>();
 
-    public ReaderWriter(String fNameInput, String fNameOutput) {
-        this.fNameInput = fNameInput;
-        this.fNameOutput = fNameOutput;
+    public ReaderWriter() {
+
     }
 
-    public void read() throws FileNotFoundException {
+    private void read() throws FileNotFoundException {
 
         StringBuilder sb = new StringBuilder();
         try {
@@ -55,7 +54,7 @@ public class ReaderWriter {
 
 
 
-    public void write(){
+    private void write(){
         //Îןנוהוכÿול פאיכ
         File file = new File(fNameOutput);
 
@@ -81,6 +80,12 @@ public class ReaderWriter {
         } catch(IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void run(String fNameInput, String fNameOutput)throws IOException{
+        this.fNameInput = fNameInput;
+        this.fNameOutput = fNameOutput;
+        read();
+        write();
     }
 
     private void putStringToMap(String str){

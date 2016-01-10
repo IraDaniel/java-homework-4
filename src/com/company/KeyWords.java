@@ -23,7 +23,7 @@ public class KeyWords {
         for (String s : keyWords) {
             if (s.hashCode() == str.hashCode()) {
                 if (s.equals(str)) {
-                    System.out.println(str);
+                    //System.out.println(str);
                     return 1;
                 } else {
                     return 0;

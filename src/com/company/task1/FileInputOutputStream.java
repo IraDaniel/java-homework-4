@@ -20,12 +20,9 @@ public class FileInputOutputStream {
     private String fNameInput;
     private String fNameOutput;
 
-    public FileInputOutputStream(String fNameInput, String fNameOutput) {
-        this.fNameInput = fNameInput;
-        this.fNameOutput = fNameOutput;
-    }
+    public FileInputOutputStream() {    }
 
-    public void read() throws IOException {
+    private void read() throws IOException {
 
         FileInputStream inputStream = new FileInputStream(fNameInput);  // Класс для работы потоком вывода из файла
         // читаем первый символ с потока байтов
@@ -56,7 +53,7 @@ public class FileInputOutputStream {
 
     }
 
-    public void write() throws IOException {
+    private void write() throws IOException {
         try {
             FileOutputStream outputStream = new FileOutputStream(fNameOutput);
 
@@ -72,6 +69,20 @@ public class FileInputOutputStream {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * Читаем файл, содержащий код на языке Java.
+     * Выводим ключевые слова и их количество в другой файл.
+     * @param fNameInput входной файл
+     * @param fNameOutput выходной файл
+     * @throws IOException
+     */
+    public void run(String fNameInput, String fNameOutput)throws IOException{
+        this.fNameInput = fNameInput;
+        this.fNameOutput = fNameOutput;
+        read();
+        write();
     }
 
     private void putStringToMap(String str) {
