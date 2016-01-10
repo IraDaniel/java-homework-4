@@ -1,1 +1,1 @@
-mysqldump -u root -pPASSWORD sesa > /C:/Ira/diploma/dump.sql
+﻿мама папа java brother

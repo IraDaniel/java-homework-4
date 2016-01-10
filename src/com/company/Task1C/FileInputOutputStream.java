@@ -1,4 +1,4 @@
-package com.company.Task1;
+package com.company.Task1C;
 
 import com.company.KeyWords;
 
@@ -12,12 +12,8 @@ import java.util.Map;
  * Created by Ira on 11.12.2015.
  */
 public class FileInputOutputStream {
-    // Класс для работы потоком вывода из файла
-    private FileInputStream inputStream;
-    // Класс для работы потоком ввода в файл
-    private FileOutputStream outputStream;
 
-    private Map<String,Integer> mapKeyWords = new HashMap<>();
+    private Map<String, Integer> mapKeyWords = new HashMap<>();
     KeyWords keyWords = new KeyWords();
 
     // полный путь к файлу
@@ -30,32 +26,30 @@ public class FileInputOutputStream {
     }
 
     public void read() throws IOException {
-        // инициализируем поток вывода из файлу
-        inputStream = new FileInputStream(fNameInput);
+
+        FileInputStream inputStream = new FileInputStream(fNameInput);  // Класс для работы потоком вывода из файла
         // читаем первый символ с потока байтов
 
-        try{
+        try {
             int data = inputStream.read();
             char content;
             char delimiter = ' ';
             String tmp = "";
-            while(data != -1) {
+            while (data != -1) {
                 // переводим байты в символ
                 content = (char) data;
-                if(content != delimiter){
+                if (content != delimiter) {
                     tmp += content;
-                }else{
-                    if( keyWords.findString(tmp) == 1){
+                } else {
+                    if (keyWords.findString(tmp) == 1) {
                         putStringToMap(tmp);
                     }
                     tmp = "";
                 }
-
-                // читаем следующий байты символа
-                data = inputStream.read();
+                data = inputStream.read(); // читаем следующий байты символа
             }
-            System.out.println(mapKeyWords);
-        }finally {
+            //System.out.println(mapKeyWords);
+        } finally {
             inputStream.close(); //закрываем поток
         }
 
@@ -63,29 +57,30 @@ public class FileInputOutputStream {
     }
 
     public void write() throws IOException {
-       {
+        try {
+            FileOutputStream outputStream = new FileOutputStream(fNameOutput);
 
-            outputStream = new FileOutputStream(fNameOutput);
+            for (String key : mapKeyWords.keySet()) {
+                outputStream.write(key.getBytes());
+                outputStream.write("=".getBytes());
 
-           for( String key: mapKeyWords.keySet()){
-               outputStream.write(key.getBytes());
-               outputStream.write("=".getBytes());
+                outputStream.write((mapKeyWords.get(key)).toString().getBytes());
+                outputStream.write(",".getBytes());
+            }
 
-               outputStream.write((mapKeyWords.get(key)).toString().getBytes());
-               outputStream.write(",".getBytes());
-           }
-
-            outputStream.close();
+            outputStream.close();    // !!! уточнить, где закрывать поток
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    private void putStringToMap(String str){
+    private void putStringToMap(String str) {
 
-        if(mapKeyWords.get(str)!= null){
+        if (mapKeyWords.get(str) != null) {
             int value = mapKeyWords.get(str) + 1;
             mapKeyWords.put(str, value);
-        }else{
-            mapKeyWords.put(str,1);
+        } else {
+            mapKeyWords.put(str, 1);
         }
 
     }
