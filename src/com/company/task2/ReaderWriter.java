@@ -14,14 +14,14 @@ public class ReaderWriter {
     private String fNameInput;
     private String fNameOutput;
     KeyWords keyWords = new KeyWords();
-    private Map<String,Integer> mapKeyWords = new HashMap<>();
+    private Map<String,Integer> mapKeyWords;
 
     public ReaderWriter() {
 
     }
 
     private void read() throws FileNotFoundException {
-
+        mapKeyWords = new HashMap<>();
         StringBuilder sb = new StringBuilder();
         try {
 

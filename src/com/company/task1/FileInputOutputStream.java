@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class FileInputOutputStream {
 
-    private Map<String, Integer> mapKeyWords = new HashMap<>();
+    private Map<String, Integer> mapKeyWords;
     KeyWords keyWords = new KeyWords();
 
     // полный путь к файлу
@@ -23,7 +23,7 @@ public class FileInputOutputStream {
     public FileInputOutputStream() {    }
 
     private void read() throws IOException {
-
+        mapKeyWords = new HashMap<>();
         FileInputStream inputStream = new FileInputStream(fNameInput);  // Класс для работы потоком вывода из файла
         // читаем первый символ с потока байтов
 

@@ -13,10 +13,13 @@ public class Main {
         FileInputOutputStream fileInputOutputStream = new FileInputOutputStream();
         fileInputOutputStream.run("Notebook.java","result1.txt");
 
-        ReaderWriter readerWriter = new ReaderWriter();
+        fileInputOutputStream.run("test.java","result3.txt");
+
+        /*ReaderWriter readerWriter = new ReaderWriter();
         readerWriter.run("Notebook.java","result2.txt");
 
         ReaderWriterEncode readerWriterEncode = new ReaderWriterEncode();
         readerWriterEncode.run("new.txt", "a.txt");
+        */
     }
 }
